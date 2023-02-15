@@ -55,6 +55,7 @@ Servlet.service() for servlet [dispatcherServlet] in context with path [] threw 
 
 java.lang.NullPointerException: null
 ```
+- 原因：数据库中字段名称不能有`_`或者`大写字母`。
 
 
 

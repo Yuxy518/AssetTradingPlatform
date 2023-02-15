@@ -35,7 +35,20 @@ export default {
       error(resp) {
         console.log(resp);
       }
-    })
+    });
+
+    $.ajax({
+      url: "http://127.0.0.1:3000/user/account/register/",
+      type: "post",
+      data: {
+        username: "c",
+        password: "pc",
+        confirm_password: "pc",
+      },
+      success(resp) {
+        console.log(resp);
+      }
+    });
   },
 }
 
