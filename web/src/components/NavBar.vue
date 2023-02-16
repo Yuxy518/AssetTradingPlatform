@@ -5,21 +5,26 @@
                 <li class="nav-li nav-1"><router-link :class="route_name == 'HomeView' ? 'highlight' : ''"
                         :to="{ name: 'HomeView' }">首页</router-link>
                 </li>
-                <li class="nav-li nav-2"><router-link :class="route_name == 'Refinancing_InfoView' ? 'highlight' : ''"
-                        :to="{
-                            name: 'Refinancing_InfoView'
-                        }">办理转按揭</router-link>
+                <!-- 转按揭 -->
+                <li class="nav-li nav-2"><router-link :class="(route_name == 'Refinancing_InfoView' ||
+                    route_name == 'Refinancing_ContractView' || route_name == 'Refinancing_RecordsView')
+                    ? 'highlight' : ''" :to="{
+        name: 'Refinancing_InfoView'
+    }">办理转按揭</router-link>
                     <ul class="dorp-box d-2">
                         <li class="drop-li"><router-link :to="{ name: 'Refinancing_InfoView' }">转按揭信息采集</router-link>
                         </li>
-                        <li class="drop-li"><router-link
-                                :to="{ name: 'Refinancing_ContractView' }">获取转按揭合同</router-link></li>
+                        <li class="drop-li"><router-link :to="{ name: 'Refinancing_ContractView' }">获取转按揭合同</router-link>
+                        </li>
                         <li class="drop-li"><router-link :to="{ name: 'Refinancing_RecordsView' }">我的办理记录</router-link>
                         </li>
                         <li class="drop-li"><router-link :to="{ name: 'FeedbackView' }">异常反馈</router-link></li>
                     </ul>
                 </li>
-                <li class="nav-li nav-3"><router-link :class="route_name == 'Deposit_InfoView' ? 'highlight' : ''"
+
+                <!-- 交定金 -->
+                <li class="nav-li nav-3"><router-link :class="(route_name == 'Deposit_InfoView' || route_name == 'Deposit_ContractView'
+                    || route_name == 'Deposit_PayView' || route_name == 'Deposit_RecordsView') ? 'highlight' : ''"
                         :to="{ name: 'Deposit_InfoView' }">交定金</router-link>
                     <ul class="dorp-box d-3">
                         <li class="drop-li"><router-link :to="{ name: 'Deposit_InfoView' }">交定金信息采集</router-link></li>
@@ -29,10 +34,13 @@
                         <li class="drop-li"><router-link :to="{ name: 'FeedbackView' }">异常反馈</router-link></li>
                     </ul>
                 </li>
-                <li class="nav-li nav-4"><router-link :class="route_name == 'Contract_InfoView' ? 'highlight' : ''"
-                        :to="{ name: 'Contract_InfoView' }">签订交易合同</router-link>
+                <!-- 签订购房交易合同 -->
+                <li class="nav-li nav-4"><router-link :class="(route_name == 'Contract_InfoView' || route_name == 'Contract_ContractView'
+                    || route_name == 'Contract_recordsView') ? 'highlight' : ''"
+                        :to="{ name: 'Contract_InfoView' }">购房交易合同</router-link>
                     <ul class="dorp-box d-4">
-                        <li class="drop-li"><router-link :to="{ name: '' }">信用评估</router-link></li>
+                        <li class="drop-li"><a href="https://www.creditchina.gov.cn/gerenxinyong/?navPage=10"
+                                target="_blank">信用评估</a></li>
                         <li class="drop-li"><router-link :to="{ name: 'Contract_InfoView' }">信息采集</router-link></li>
                         <li class="drop-li"><router-link :to="{ name: 'Contract_ContractView' }">签订交易合同</router-link>
                         </li>
@@ -41,7 +49,9 @@
                         <li class="drop-li"><router-link :to="{ name: 'FeedbackView' }">异常反馈</router-link></li>
                     </ul>
                 </li>
-                <li class="nav-li nav-5"><router-link :class="route_name == 'Mortgage_ContractView' ? 'highlight' : ''"
+                <!-- 办理按揭贷款 -->
+                <li class="nav-li nav-5"><router-link
+                        :class="(route_name == 'Mortgage_ContractView' || route_name == 'Mortgage_RecordsView') ? 'highlight' : ''"
                         :to="{ name: 'Mortgage_ContractView' }">办理按揭贷款</router-link>
                     <ul class="dorp-box d-5">
                         <li class="drop-li"><router-link :to="{ name: '' }">信用评估</router-link></li>
@@ -52,13 +62,16 @@
                         <li class="drop-li"><router-link :to="{ name: 'FeedbackView' }">异常反馈</router-link></li>
                     </ul>
                 </li>
-                <li class="nav-li nav-6"><router-link :class="route_name == 'Default_ComplaintView' ? 'highlight' : ''"
+                <!-- 违约处理 -->
+                <li class="nav-li nav-6"><router-link
+                        :class="(route_name == 'Default_ComplaintView' || route_name == 'Default_RecordsView') ? 'highlight' : ''"
                         :to="{ name: 'Default_ComplaintView' }">违约处理</router-link>
                     <ul class="dorp-box d-6">
                         <li class="drop-li"><router-link :to="{ name: 'Default_ComplaintView' }">投诉违约</router-link></li>
                         <li class="drop-li"><router-link :to="{ name: 'Default_RecordsView' }">我的处理记录</router-link></li>
                     </ul>
                 </li>
+                <!-- 了解更多 -->
                 <li class="nav-li nav-7"><router-link :class="route_name == '' ? 'highlight' : ''"
                         :to="{ name: '' }">了解更多</router-link>
                     <ul class="dorp-box d-7">
@@ -68,8 +81,7 @@
                 </li>
             </ul>
         </div>
-    </div>
-
+</div>
 </template>
 
 <script>

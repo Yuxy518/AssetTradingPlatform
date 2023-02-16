@@ -2,6 +2,7 @@
   <LogoBar />
   <NavBar />
   <router-view />
+  <BottomBar />
 </template>
 
 <script>
@@ -11,11 +12,13 @@ import "bootstrap/dist/js/bootstrap"
 
 import LogoBar from '@/components/LogoBar.vue'
 import NavBar from '@/components/NavBar.vue'
+import BottomBar from "./components/BottomBar.vue"
 
 export default {
   components: {
     LogoBar,
     NavBar,
+    BottomBar,
   }
   // setup() {
   //   $.ajax({

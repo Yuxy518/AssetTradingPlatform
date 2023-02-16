@@ -55,7 +55,7 @@ Servlet.service() for servlet [dispatcherServlet] in context with path [] threw 
 
 java.lang.NullPointerException: null
 ```
-- 原因：数据库中字段名称不能有`_`或者`大写字母`。
+- 原因：数据库中字段名称不能有`_`或者`大写字母`
 
 #### 实现过程
 ##### 2023.2.14
@@ -65,6 +65,9 @@ java.lang.NullPointerException: null
 - 实现登录用的3个api；
 
 ##### 2023.2.14
+- 解决api报错：数据库字段名称不能有下划线或者大写字母；
+- 创建前端各页面，划分各个功能模块，搭建前端骨架；
+
 - 办理转按揭
   - 转按揭信息采集
   - 提交转按揭合同
