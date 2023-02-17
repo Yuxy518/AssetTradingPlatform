@@ -51,11 +51,12 @@
                 </li>
                 <!-- 办理按揭贷款 -->
                 <li class="nav-li nav-5"><router-link
-                        :class="(route_name == 'Mortgage_ContractView' || route_name == 'Mortgage_RecordsView') ? 'highlight' : ''"
+                        :class="(route_name == 'Mortgage_ContractView' || route_name == 'Mortgage_RecordsView' || route_name == 'Mortgage_InfoView') ? 'highlight' : ''"
                         :to="{ name: 'Mortgage_ContractView' }">办理按揭贷款</router-link>
                     <ul class="dorp-box d-5">
-                        <li class="drop-li"><router-link :to="{ name: '' }">信用评估</router-link></li>
-                        <li class="drop-li"><router-link :to="{ name: '' }">选择贷款类型</router-link></li>
+                        <li class="drop-li"><a href="https://www.creditchina.gov.cn/gerenxinyong/?navPage=10"
+                                target="_blank">信用评估</a></li>
+                        <li class="drop-li"><router-link :to="{ name: 'Mortgage_InfoView' }">选择贷款类型</router-link></li>
                         <li class="drop-li"><router-link :to="{ name: 'Mortgage_ContractView' }">签订合同</router-link></li>
                         <li class="drop-li"><router-link :to="{ name: 'Mortgage_RecordsView' }">我的办理记录</router-link>
                         </li>
@@ -71,12 +72,25 @@
                         <li class="drop-li"><router-link :to="{ name: 'Default_RecordsView' }">我的处理记录</router-link></li>
                     </ul>
                 </li>
-                <!-- 了解更多 -->
-                <li class="nav-li nav-7"><router-link :class="route_name == '' ? 'highlight' : ''"
-                        :to="{ name: '' }">了解更多</router-link>
-                    <ul class="dorp-box d-7">
-                        <li class="drop-li"><router-link :to="{ name: '' }">我的业务记录</router-link></li>
-                        <li class="drop-li"><router-link :to="{ name: '' }">关于我们</router-link></li>
+                <!-- 个人主页 -->
+                <li class="nav-li dropdown" v-if="!$store.state.user.is_login">
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
+                        未登录
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><router-link class="dropdown-item" :to="{ name: 'LoginView' }">登录</router-link> </li>
+                        <li><router-link class="dropdown-item" :to="{ name: 'RegisterView' }">注册账号</router-link> </li>
+                    </ul>
+                </li>
+
+                <li class="nav-li dropdown" v-else>
+                    <a class="nav-link dropdown-toggle infoBtn" role="button" data-bs-toggle="dropdown">
+                        <img class="userPhoto" :src=$store.state.user.photo alt="">
+                        <span class="userName">{{ $store.state.user.username }}</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><router-link class="dropdown-item" :to="{ name: '' }">我的业务进度</router-link> </li>
+                        <li><span class="dropdown-item" style="cursor: pointer" @click="logout">退出登录</span></li>
                     </ul>
                 </li>
             </ul>
@@ -85,9 +99,10 @@
 </template>
 
 <script>
-import $ from "jquery"
+import $ from "jquery";
 import { useRoute } from "vue-router";
 import { computed } from "vue";
+import { useStore } from "vuex";
 
 window.onload = function () {
     $(".nav-1").mouseover(function () {
@@ -128,10 +143,19 @@ window.onload = function () {
 }
 export default {
     setup() {
-        let route = useRoute();
-        let route_name = computed(() => route.name);
+        const route = useRoute();
+        const route_name = computed(() => route.name);
+
+        const store = useStore();
+
+        const logout = () => {
+            store.dispatch("logout");
+            alert("您已退出登录！");
+        }
+
         return {
             route_name,
+            logout,
         }
     }
 }
@@ -203,5 +227,21 @@ export default {
 .drop-li {
     margin: 8px 0;
     list-style-type: none;
+}
+
+.infoBtn {
+    position: relative;
+}
+
+.userPhoto {
+    position: absolute;
+    width: 35px;
+    top: 10px;
+    left: 20px;
+    border-radius: 50%;
+}
+
+.userName {
+    position: relative;
 }
 </style>

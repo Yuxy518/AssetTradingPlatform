@@ -46,8 +46,6 @@ public class LoginServiceImpl implements LoginService {
 		map.put("error_message", "success");
 		map.put("jwt_token", jwt);
 
-		System.out.println(map);
-
 		return map;
 	}
 }

@@ -42,7 +42,7 @@
                 </div>
             </div>
         </div>
-    </div>
+</div>
 </template>
 
 <script>
@@ -53,12 +53,9 @@ export default {
 
 <style scoped>
 .back {
-    margin-top: 200px;
-    background-image: url(https://www.cfae.cn/business/images/footer/footer-bg.png);
+    background-image: url(@/assets/images/footer.jpg);
+    background-size: 100% 100%;
     height: 400px;
-    border-color: aliceblue;
-    border-style: solid;
-    border-width: 0 10px;
 
     color: aliceblue;
 }

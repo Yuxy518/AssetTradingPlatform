@@ -13,10 +13,14 @@ import Deposit_RecordsView from '@/views/Deposit/RecordsView'
 import Contract_ContractView from '@/views/Contract/ContractView'
 import Contract_InfoView from '@/views/Contract/InfoView'
 import Contract_RecordsView from '@/views/Contract/RecordsView'
+import Mortgage_InfoView from '@/views/Mortgage/InfoView'
 import Mortgage_ContractView from '@/views/Mortgage/ContractView'
 import Mortgage_RecordsView from '@/views/Mortgage/RecordsView'
 import Default_ComplaintView from '@/views/Default/ComplaintView'
 import Default_RecordsView from '@/views/Default/RecordsView'
+import TestView from '@/views/TestView.vue'
+
+import store from '@/store'
 
 const routes = [
   {
@@ -132,6 +136,14 @@ const routes = [
     }
   },
   {
+    path: '/mortgage/info/',
+    name: 'Mortgage_InfoView',
+    component: Mortgage_InfoView,
+    meta: {
+      RequireLogin: true,
+    }
+  },
+  {
     path: '/mortgage/contract/',
     name: 'Mortgage_ContractView',
     component: Mortgage_ContractView,
@@ -163,6 +175,11 @@ const routes = [
       RequireLogin: true,
     }
   },
+  {
+    path: '/test/',
+    name: 'TestView',
+    component: TestView,
+  }
 ]
 
 const router = createRouter({
@@ -171,3 +188,11 @@ const router = createRouter({
 })
 
 export default router
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.RequireLogin && !store.state.user.is_login) {
+    alert("请先登录~~");
+    next({ name: "LoginView" });
+  }
+  else next();
+});

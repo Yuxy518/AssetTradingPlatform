@@ -34,9 +34,7 @@ public class InfoServiceImpl implements InfoService {
 		map.put("userid", user.getId().toString());
 		map.put("username", user.getUsername());
 		map.put("photo", user.getPhoto());
-		System.out.println("hh");
 		map.put("is_admin", user.getIsadmin().toString());
-		System.out.println("hh");
 
 		return map;
 	}

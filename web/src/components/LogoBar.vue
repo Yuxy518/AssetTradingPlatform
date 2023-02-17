@@ -9,9 +9,7 @@
                 </form>
             </div>
         </nav>
-    </div>
-
-
+</div>
 </template>
 
 <script>
@@ -23,7 +21,7 @@ export default {
 <style scoped>
 .logo {
     width: 300px;
-    margin: 10px 0;
+    margin: 5px 0;
 }
 
 .img {
