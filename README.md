@@ -55,7 +55,24 @@ Servlet.service() for servlet [dispatcherServlet] in context with path [] threw 
 
 java.lang.NullPointerException: null
 ```
-- 原因：数据库中字段名称不能有`_`或者`大写字母`
+原因：
+- 数据库中字段名称不能有`_`或者`大写字母`
+- Pojo层中，数据表对应的类需要加注解：
+  ```java
+  @TableName(value = "refinanceinfo") //对应数据表的表名
+  ```
+
+#### 获取全局变量store中，state里的值
+```js
+import { useStore } from 'vuex';
+import { computed } from '@vue/reactivity';
+```
+```js
+const store = useStore();
+const userId = computed(() => store.state.user.id);
+const token = computed(() => store.state.user.token);
+//取值记得用.value
+```
 
 #### 实现过程
 ##### 2023.2.14
@@ -105,3 +122,41 @@ java.lang.NullPointerException: null
 - 实现登录注册功能模块；
 
 - 这两天的效率不高！
+
+
+##### 2023.2.18
+- 查了一天关于将文件传到后端，还没找到方案。。
+
+#### 2023.2.19
+- 上午实现了将转按揭数据传到后端，存储到数据库。解决了很多bug才成功：
+  - 前端：
+    - 响应式获取store中state里的值，需要用`computed`：
+      ```js
+      import { useStore } from 'vuex';
+      import { computed } from '@vue/reactivity';
+      ```
+      ```js
+      const store = useStore();
+      const userId = computed(() => store.state.user.id); //取值用.value，需要在函数中
+      ```
+    - 绑定的ref需要用.value来取值；
+  - 后端：
+    - Pojo层里每个数据表对应的类，需要加上注解@TableName(value = "")，对应数据表的表名；要不然后端报错找不到数据表。
+      ```java
+      @Data
+      @AllArgsConstructor
+      @NoArgsConstructor
+      @TableName(value = "refinanceinfo") //对应数据表的表名
+      public class RefinanceInfo {
+        @TableId(type = IdType.AUTO) //自增变量
+        private Integer id;
+        private Integer userid;
+      }
+      ```
+  - 经验：
+    - 如果报错了，就一点一点的打断点，看到底执行到哪一步出现了问题。
+    - 从controller走，看能不能到service，如果不能就是controller层里的问题，然后再逐语句输出来看。
+
+- 实现了办理转按揭功能模块连接数据库操作，熟练了建数据库写api的过程；
+- 了解数据库和对应实体类之间默认的'_'命名法和驼峰命名法之间的自动映射。或者用注解`@TableField("remarks")`指定数据库名。
+  否则如果数据库字段名和实体类名字一样时，会报错字段不存在。

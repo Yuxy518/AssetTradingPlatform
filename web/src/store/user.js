@@ -13,7 +13,7 @@ export default ({
     },
     mutations: {
         updateUser(state, user) {
-            state.id = user.id;
+            state.id = user.userid;
             state.username = user.username;
             state.photo = user.photo;
             state.is_login = user.is_login;
@@ -42,6 +42,7 @@ export default ({
                     password: data.password,
                 },
                 success(resp) {
+                    localStorage.setItem("jwt_token", resp.jwt_token);
                     context.commit("updateToken", resp.jwt_token);
                     data.success(resp);
                 },
@@ -72,6 +73,7 @@ export default ({
         },
 
         logout(context) {
+            localStorage.removeItem("jwt_token");
             context.commit("logout");
         }
     },

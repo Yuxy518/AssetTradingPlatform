@@ -16,7 +16,7 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <from>
+                            <form @submit.prevent="submit_info">
                                 <div class="accordion" id="accordionExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="headingOne">
@@ -34,45 +34,37 @@
                                                     <div class="col-5">
                                                         <label for="name1" class="form-label">借款人姓名</label>
                                                         <div class="col-8">
-                                                            <input type="text" class="form-control" id="name1">
+                                                            <input type="text" class="form-control" id="name1"
+                                                                v-model="ori_name">
                                                         </div>
                                                     </div>
-                                                    <div class="col-3">
-                                                        <label for="gender1" class="form-label">借款人性别</label>
-                                                        <div class="col-5">
-                                                            <select id="gender1" class="form-select">
-                                                                <option selected>男</option>
-                                                                <option>女</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <label for="nation1" class="form-label">借款人民族</label>
-                                                        <input type="text" class="form-control" id="nation1">
-                                                    </div>
+
                                                 </div>
 
                                                 <div class="row">
                                                     <div class="col-8">
                                                         <label for="idNum1" class="form-label">借款人身份证号</label>
                                                         <div class="col-8">
-                                                            <input type="text" class="form-control" id="idNum1">
+                                                            <input type="text" class="form-control" id="idNum1"
+                                                                v-model="ori_idNum">
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
                                                     <div class="col-8">
-                                                        <label for="idCardPic1" class="form-label">借款人和权利共有人身份证复印件</label>
-                                                        <input class="form-control" type="file" id="idCardPic1" multiple>
+                                                        <label for="idCardPic1"
+                                                            class="form-label ori_idCard">借款人和权利共有人身份证</label>
+                                                        <input class="form-control" type="file" id="idCardPic1"
+                                                            ref="ori_idCard" @change="upload_ori_idCard">
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
                                                     <div class="col-8 mb-5">
-                                                        <label for="capitalCardPic1" class="form-label">还款卡或还款存折复印件</label>
+                                                        <label for="capitalCardPic1" class="form-label">还款卡或还款存折</label>
                                                         <input class="form-control" type="file" id="capitalCardPic1"
-                                                            multiple>
+                                                            ref="ori_cashCard" @change="upload_ori_cashCard">
                                                     </div>
                                                 </div>
                                             </div>
@@ -94,21 +86,9 @@
                                                     <div class="col-5">
                                                         <label for="name2" class="form-label">借款人姓名</label>
                                                         <div class="col-8">
-                                                            <input type="text" class="form-control" id="name2">
+                                                            <input type="text" class="form-control" id="name2"
+                                                                v-model="new_name">
                                                         </div>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <label for="gender2" class="form-label">借款人性别</label>
-                                                        <div class="col-5">
-                                                            <select id="gender2" class="form-select">
-                                                                <option selected>男</option>
-                                                                <option>女</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <label for="nation2" class="form-label">借款人民族</label>
-                                                        <input type="text" class="form-control" id="nation2">
                                                     </div>
                                                 </div>
 
@@ -116,7 +96,8 @@
                                                     <div class="col-8">
                                                         <label for="idNum2" class="form-label">借款人身份证号</label>
                                                         <div class="col-8">
-                                                            <input type="text" class="form-control" id="idNum2">
+                                                            <input type="text" class="form-control" id="idNum2"
+                                                                v-model="new_idNum">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -124,28 +105,32 @@
                                                 <div class="row">
                                                     <div class="col-8">
                                                         <label for="idCardPic2" class="form-label">借款人和权利共有人身份证</label>
-                                                        <input class="form-control" type="file" id="idCardPic2" multiple>
+                                                        <input class="form-control" type="file" id="idCardPic2"
+                                                            ref="new_idCard" @change="upload_new_idCard">
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
                                                     <div class="col-8">
                                                         <label for="HouseholdPic2" class="form-label">借款人和权利共有人户口簿</label>
-                                                        <input class="form-control" type="file" id="HouseholdPic2" multiple>
+                                                        <input class="form-control" type="file" id="HouseholdPic2"
+                                                            ref="new_householder" @change="upload_new_householder">
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
                                                     <div class="col-8">
                                                         <label for="MarryPic2" class="form-label">借款人婚姻证明</label>
-                                                        <input class="form-control" type="file" id="MarryPic2" multiple>
+                                                        <input class="form-control" type="file" id="MarryPic2"
+                                                            ref="new_marryProve" @change="upload_new_marryProve">
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
                                                     <div class="col-8">
                                                         <label for="IncomePic2" class="form-label">借款人和参贷人的收入证明</label>
-                                                        <input class="form-control" type="file" id="IncomePic2" multiple>
+                                                        <input class="form-control" type="file" id="IncomePic2"
+                                                            ref="new_incomeProve" @change="upload_new_incomeProve">
                                                     </div>
                                                 </div>
 
@@ -153,7 +138,8 @@
                                                     <div class="col-8">
                                                         <label for="FundNum2" class="form-label">如公积金贷款另附公积金帐号</label>
                                                         <div class="col-8">
-                                                            <input type="text" class="form-control" id="FundNum2">
+                                                            <input type="text" class="form-control" id="FundNum2"
+                                                                v-model="new_fundNum">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -174,42 +160,136 @@
                                             <div class="accordion-body">
                                                 <div class="row">
                                                     <div class="col-8">
+                                                        <label for="RealPropertyNum" class="form-label">不动产权证明编号</label>
+                                                        <input class="form-control" id="RealPropertyNum"
+                                                            v-model="realPropertyNum"
+                                                            placeholder="X（20XX）XX市XX区 不动产证明 第XXXXXX号">
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="row">
+                                                    <div class="col-8">
                                                         <label for="PropertyPic" class="form-label">房地产权证</label>
-                                                        <input class="form-control" type="file" id="PropertyPic" multiple>
+                                                        <input class="form-control" type="file" id="PropertyPic"
+                                                            ref="property">
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-8">
                                                         <label for="Contract" class="form-label">借款合同（抵押合同）</label>
-                                                        <input class="form-control" type="file" id="Contract" multiple>
+                                                        <input class="form-control" type="file" id="Contract"
+                                                            ref="loanContract">
                                                     </div>
                                                 </div>
                                                 <div class="row mb-5">
                                                     <div class="col-8">
                                                         <label for="Buy" class="form-label">房屋买卖合同</label>
-                                                        <input class="form-control" type="file" id="Buy" multiple>
+                                                        <input class="form-control" type="file" id="Buy" ref="sellContract">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingFour">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                                                aria-expanded="false" aria-controls="collapseFour">
+                                                备注信息
+                                            </button>
+                                        </h2>
+                                        <div id="collapseFour" class="accordion-collapse collapse"
+                                            aria-labelledby="headingFour">
+                                            <div class="accordion-body">
+                                                <div class="row mb-5">
+                                                    <div class="col-10">
+                                                        <textarea class="form-control" rows="3"
+                                                            placeholder="如果有情况说明，可以在此填写(非必填)。" v-model="remark"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <button type="submit" class="btn btn-primary subBtn">提交申请</button>
-                            </from>
+                            </form>
 
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
-</div>
+    </div>
 </template>
 
 <script>
-import NavCom from '@/components/Refinancing/NavCom.vue'
-import PicCom from '@/components/Refinancing/PicCom.vue'
+import NavCom from '@/components/Refinancing/NavCom.vue';
+import PicCom from '@/components/Refinancing/PicCom.vue';
+import { ref } from 'vue';
+import $ from 'jquery';
+import { useStore } from 'vuex';
+import { computed } from '@vue/reactivity';
+
 export default {
+    setup() {
+        const ori_name = ref("");
+        const ori_idNum = ref("");
+        const new_name = ref("");
+        const new_idNum = ref("");
+        const new_fundNum = ref("");
+        const realPropertyNum = ref("");
+        const remark = ref("");
+
+        const store = useStore();
+        const userId = computed(() => store.state.user.id); //取值用.value
+        const token = computed(() => store.state.user.token);
+
+        const submit_info = () => {
+            $.ajax({
+                url: "http://127.0.0.1:3000/refinance/refinanceinfo/",
+                type: "post",
+                data: {
+                    userId: userId.value,
+                    oriName: ori_name.value,
+                    oriIdNum: ori_idNum.value,
+                    newName: new_name.value,
+                    newIdNum: new_idNum.value,
+                    fundNum: new_fundNum.value,
+                    realPropertyNum: realPropertyNum.value,
+                    remarks: remark.value,
+                },
+                headers: {
+                    Authorization: "Bearer " + token.value,
+                },
+                success(resp) {
+                    if (resp.error_message === "success") {
+                        alert("申请转按揭成功！正在跳转'我的办理进度'页面查看详情...");
+                    }
+                    else {
+                        alert("申请转按揭失败，" + resp.error_message);
+                    }
+                },
+                error(resp) {
+                    alert("后端问题", resp);
+                }
+            });
+        }
+
+        return {
+            ori_name,
+            ori_idNum,
+            new_name,
+            new_idNum,
+            new_fundNum,
+            realPropertyNum,
+            remark,
+            submit_info,
+        }
+    },
+
     components: {
         PicCom,
         NavCom,

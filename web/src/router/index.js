@@ -190,9 +190,23 @@ const router = createRouter({
 export default router
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.RequireLogin && !store.state.user.is_login) {
+  const token = localStorage.getItem("jwt_token");
+
+  if (store.state.user.is_login) next();
+  else if (token) {
+    store.commit("updateToken", token);
+    store.dispatch("getInfo", {
+      success() {
+
+      }
+    });
+    next();
+  }
+  else if (!to.meta.RequireLogin) {
+    next();
+  }
+  else {
     alert("请先登录~~");
     next({ name: "LoginView" });
   }
-  else next();
 });
