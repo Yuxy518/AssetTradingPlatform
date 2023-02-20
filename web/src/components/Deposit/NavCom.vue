@@ -8,14 +8,10 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="#">交定金信息采集</a>
                 </li>
-                <hr>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">提交定金合同</a>
-                </li>
-                <hr>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">支付定金</a>
-                </li>
+                <!-- <hr>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">支付定金</a>
+                    </li> -->
                 <hr>
                 <li class="nav-item">
                     <a class="nav-link" href="#">我的办理记录</a>
@@ -26,7 +22,7 @@
                 </li>
             </ul>
         </div>
-</div>
+    </div>
 </template>
 
 <script>

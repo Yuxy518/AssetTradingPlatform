@@ -16,7 +16,7 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <from>
+                            <form>
                                 <div class="accordion" id="accordionExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="headingOne">
@@ -138,7 +138,7 @@
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary subBtn">提交申请</button>
-                            </from>
+                            </form>
 
                         </div>
                     </div>
@@ -146,7 +146,7 @@
             </div>
 
         </div>
-</div>
+    </div>
 </template>
 
 <script>

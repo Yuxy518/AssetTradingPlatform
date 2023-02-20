@@ -34,4 +34,23 @@ public class CommonUtils {
 		}
 		return s.toString();
 	}
+
+	public static Double parseDouble(String s) {
+		double x = 0;
+		int flag = 0, cnt = 0;
+		for(int i = 0; i < s.length(); i ++) {
+			char c = s.charAt(i);
+			if(c == '.') {
+				flag = 1;
+			}
+			else if(flag == 0) {
+				x = x * 10 + c - '0';
+			}
+			else {
+				cnt ++;
+				x = x + cnt * 0.1 * (c - '0');
+			}
+		}
+		return x;
+	}
 }

@@ -54,10 +54,6 @@ import { computed } from '@vue/reactivity';
 import { ref } from 'vue';
 
 export default {
-    mounted() {
-
-    },
-
     setup() {
         const store = useStore();
         const userId = computed(() => store.state.user.id);

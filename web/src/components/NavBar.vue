@@ -18,7 +18,7 @@
                         </li>
                         <li class="drop-li"><router-link :to="{ name: 'Refinancing_RecordsView' }">我的办理记录</router-link>
                         </li>
-                        <li class="drop-li"><router-link :to="{ name: 'FeedbackView' }">异常反馈</router-link></li>
+                        <!-- <li class="drop-li"><router-link :to="{ name: 'FeedbackView' }">异常反馈</router-link></li> -->
                     </ul>
                 </li>
 
@@ -28,10 +28,9 @@
                         :to="{ name: 'Deposit_InfoView' }">交定金</router-link>
                     <ul class="dorp-box d-3">
                         <li class="drop-li"><router-link :to="{ name: 'Deposit_InfoView' }">交定金信息采集</router-link></li>
-                        <li class="drop-li"><router-link :to="{ name: 'Deposit_ContractView' }">提交认购书</router-link></li>
-                        <li class="drop-li"><router-link :to="{ name: 'Deposit_PayView' }">支付定金</router-link></li>
+                        <!-- <li class="drop-li"><router-link :to="{ name: 'Deposit_PayView' }">支付定金</router-link></li> -->
                         <li class="drop-li"><router-link :to="{ name: 'Deposit_RecordsView' }">我的办理记录</router-link></li>
-                        <li class="drop-li"><router-link :to="{ name: 'FeedbackView' }">异常反馈</router-link></li>
+                        <!-- <li class="drop-li"><router-link :to="{ name: 'FeedbackView' }">异常反馈</router-link></li> -->
                     </ul>
                 </li>
                 <!-- 签订购房交易合同 -->
@@ -46,7 +45,7 @@
                         </li>
                         <li class="drop-li"><router-link :to="{ name: 'Contract_recordsView' }">我的办理记录</router-link>
                         </li>
-                        <li class="drop-li"><router-link :to="{ name: 'FeedbackView' }">异常反馈</router-link></li>
+                        <!-- <li class="drop-li"><router-link :to="{ name: 'FeedbackView' }">异常反馈</router-link></li> -->
                     </ul>
                 </li>
                 <!-- 办理按揭贷款 -->
@@ -60,7 +59,7 @@
                         <li class="drop-li"><router-link :to="{ name: 'Mortgage_ContractView' }">签订合同</router-link></li>
                         <li class="drop-li"><router-link :to="{ name: 'Mortgage_RecordsView' }">我的办理记录</router-link>
                         </li>
-                        <li class="drop-li"><router-link :to="{ name: 'FeedbackView' }">异常反馈</router-link></li>
+                        <!-- <li class="drop-li"><router-link :to="{ name: 'FeedbackView' }">异常反馈</router-link></li> -->
                     </ul>
                 </li>
                 <!-- 违约处理 -->
@@ -95,7 +94,7 @@
                 </li>
             </ul>
         </div>
-</div>
+    </div>
 </template>
 
 <script>
