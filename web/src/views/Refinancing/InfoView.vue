@@ -249,7 +249,7 @@ export default {
 
         const submit_info = () => {
             $.ajax({
-                url: "http://127.0.0.1:3000/refinance/refinanceinfo/",
+                url: "http://127.0.0.1:3000/refinance/info/",
                 type: "post",
                 data: {
                     userId: userId.value,

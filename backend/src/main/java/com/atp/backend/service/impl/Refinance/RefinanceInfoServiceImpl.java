@@ -67,14 +67,14 @@ public class RefinanceInfoServiceImpl implements RefinanceInfoService {
 			return map;
 		}
 
-		String randomNum = getRandomNum(5);
+		String randomNum = CommonUtils.getRandomNum(5);
 
 		QueryWrapper<RefinanceInfo> queryWrapper = new QueryWrapper<>();
 		queryWrapper.eq("applicationnum", randomNum);
 
 		for(int i = 0; i < 100; i ++){
 			List<RefinanceInfo> refinanceInfoList = refinanceInfoMapper.selectList(queryWrapper);
-			if(refinanceInfoList.size() != 0) randomNum = getRandomNum(5);
+			if(refinanceInfoList.size() != 0) randomNum = CommonUtils.getRandomNum(5);
 			else break;
 		}
 
@@ -89,12 +89,5 @@ public class RefinanceInfoServiceImpl implements RefinanceInfoService {
 		return map;
 	}
 
-	public String getRandomNum(int length) {
-		StringBuilder s = new StringBuilder();
-		for(int i = 0; i < length; i ++){
-			int x =  (int)(Math.random() * 10);
-			s.append(x);
-		}
-		return s.toString();
-	}
+
 }

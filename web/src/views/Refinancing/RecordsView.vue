@@ -16,32 +16,23 @@
                 <div class="col-9">
                     <div class="card">
                         <div class="card-body">
-                            <table class="table">
+                            <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
+                                        <th scope="col">编号</th>
+                                        <th scope="col">提交时间</th>
+                                        <th scope="col">提交类型</th>
+                                        <th scope="col">审核进度</th>
+                                        <th scope="col">备注信息</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td colspan="2">Larry the Bird</td>
-                                        <td>@twitter</td>
+                                    <tr v-for="(record, index) in records" :key="record.submitTime">
+                                        <th scope="row">{{ index + 1 }}</th>
+                                        <td>{{ record.submitTime }}</td>
+                                        <td>{{ record.type }}</td>
+                                        <td>{{ record.progress }}</td>
+                                        <td>{{ record.remarks }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -49,17 +40,49 @@
                     </div>
                 </div>
             </div>
-
         </div>
-</div>
+    </div>
 </template>
 
 <script>
 
+import NavCom from '@/components/Refinancing/NavCom.vue';
+import PicCom from '@/components/Refinancing/PicCom.vue';
+import $ from 'jquery';
+import { useStore } from 'vuex';
+import { computed } from '@vue/reactivity';
+import { ref } from 'vue';
 
-import NavCom from '@/components/Refinancing/NavCom.vue'
-import PicCom from '@/components/Refinancing/PicCom.vue'
 export default {
+    mounted() {
+
+    },
+
+    setup() {
+        const store = useStore();
+        const userId = computed(() => store.state.user.id);
+        const token = computed(() => store.state.user.token);
+        const records = ref([]); //需要动态变化
+
+        $.ajax({
+            url: "http://127.0.0.1:3000/refinance/record/",
+            type: "get",
+            data: {
+                userId: userId.value,
+            },
+            headers: {
+                Authorization: "Bearer " + token.value,
+            },
+            success(resp) {
+                records.value = JSON.parse(resp.list);
+            },
+        });
+
+        return {
+            records,
+        }
+    },
+
     components: {
         PicCom,
         NavCom,

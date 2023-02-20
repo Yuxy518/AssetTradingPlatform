@@ -80,7 +80,13 @@
             <artifactId>annotations</artifactId>
             <version>24.0.0</version>
         </dependency>
-
+        <!--  用来将list转为json  -->
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+            <classifier>jdk15</classifier>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

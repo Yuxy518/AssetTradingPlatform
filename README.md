@@ -1,4 +1,9 @@
-#### github创建仓库：
+[toc]
+----
+
+### 
+#### 初始化配置
+##### github创建仓库
 - 生成密钥：进入家目录，如果没有`.ssh`文件的话，执行`ssh-keygen`；
 - 进入`.ssh`，打开`id_rsa.pub`：`cat id_rsa.pub`，复制公钥；
 - 上传到github；
@@ -11,7 +16,7 @@
 - 上传最新版本：`git push`；
 
 ---
-#### 后端初始化：
+##### 后端初始化
 - 在resources.application.properties下设置端口地址`server.port=3000`；
 - 解决跨域问题：添加配置类`CorsConfig`；
 - 在`pom.xml`文件中添加`mybiats`依赖；[Maven仓库地址](https://mvnrepository.com/)
@@ -28,7 +33,7 @@
     spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
     ```
 
-#### 修改Spring Security
+##### 修改Spring Security
 - 添加依赖：
   - `spring-boot-starter-security`
   - 此时访问后端页面需要授权，可以通过`user`,`随机密码`来登录访问；
@@ -39,7 +44,7 @@
   - 此时就需要将数据库中的密码进行`BCrypt`加密；
   - 用数据库里的`用户名`和`密码`来登录；
 
-#### 配置jwt验证
+##### 配置jwt验证
 - 添加依赖：
   - `jjwt-api`
   - `jjwt-impl`
@@ -49,7 +54,7 @@
 - 配置config.SecurityConfig类，放行登录、注册等接口
 ---
 
-#### 报错
+#### 常见报错
 ```java
 Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
 
@@ -62,18 +67,63 @@ java.lang.NullPointerException: null
   @TableName(value = "refinanceinfo") //对应数据表的表名
   ```
 
-#### 获取全局变量store中，state里的值
-```js
-import { useStore } from 'vuex';
-import { computed } from '@vue/reactivity';
-```
-```js
-const store = useStore();
-const userId = computed(() => store.state.user.id);
-const token = computed(() => store.state.user.token);
-//取值记得用.value
-```
+---
+#### 知识点
+##### 获取全局变量store中属性
+- ```js
+  import { useStore } from 'vuex';
+  import { computed } from '@vue/reactivity';
+  ```
+  ```js
+  const store = useStore();
+  const userId = computed(() => store.state.user.id);
+  const token = computed(() => store.state.user.token);
+  //取值记得用.value
+  ```
 
+##### 处理maven冲突
+- 安装maven Helper插件；
+- 在pom.xml文件下，点击`DependencyAnalyzer`，查看冲突位置。
+- 将冲突位置禁用。
+
+##### 后端传list到前端，前端接收后渲染
+- 后端：
+  - 将list转成json字符串形式传到前端；
+  - 这里需要加依赖：
+    ```xml
+    <dependency>
+        <groupId>net.sf.json-lib</groupId>
+        <artifactId>json-lib</artifactId>
+        <version>2.4</version>
+        <classifier>jdk15</classifier>
+    </dependency>
+    ```
+  - 转化为字符串
+    ```java
+    JSONArray jsonArray = JSONArray.fromObject(list);
+    String json_list  =  jsonArray.toString();
+    ```
+- 前端：
+  - 前端渲染需要用ref定义动态变量
+    ```js
+    import { ref } from 'vue';
+    const records = ref([]); //需要动态变化
+    ```
+  - 将后端传过来的json字符串转为对象，存到record中
+    ```js
+    records.value = JSON.parse(resp.list);
+    ```
+  - 渲染的时候遍历对象
+    ```js
+    <tr v-for="(record, index) in records" :key="record.submitTime">
+        <th scope="row">{{ index + 1 }}</th>
+        <td>{{ record.submitTime }}</td>
+        <td>{{ record.type }}</td>
+        <td>{{ record.progress }}</td>
+        <td>{{ record.remarks }}</td>
+    </tr>
+    ```
+---
 #### 实现过程
 ##### 2023.2.14
 - 建立git仓库；
@@ -127,7 +177,7 @@ const token = computed(() => store.state.user.token);
 ##### 2023.2.18
 - 查了一天关于将文件传到后端，还没找到方案。。
 
-#### 2023.2.19
+##### 2023.2.19
 - 上午实现了将转按揭数据传到后端，存储到数据库。解决了很多bug才成功：
   - 前端：
     - 响应式获取store中state里的值，需要用`computed`：

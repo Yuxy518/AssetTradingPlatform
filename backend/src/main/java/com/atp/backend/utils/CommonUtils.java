@@ -25,4 +25,13 @@ public class CommonUtils {
 		}
 		return num;
 	}
+
+	public static String getRandomNum(int length) {
+		StringBuilder s = new StringBuilder();
+		for(int i = 0; i < length; i ++){
+			int x =  (int)(Math.random() * 10);
+			s.append(x);
+		}
+		return s.toString();
+	}
 }

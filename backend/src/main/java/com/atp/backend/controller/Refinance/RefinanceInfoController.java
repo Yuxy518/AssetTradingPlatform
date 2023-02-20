@@ -21,7 +21,7 @@ public class RefinanceInfoController {
 	@Autowired
 	RefinanceInfoService refinanceInfoService;
 
-	@PostMapping("/refinance/refinanceinfo/")
+	@PostMapping("/refinance/info/")
 	public Map<String, String> refinanceInfo(@RequestParam Map<String, String> mp){
 		Integer userId = CommonUtils.parseInt(mp.get("userId"));
 		String oriName = mp.get("oriName");

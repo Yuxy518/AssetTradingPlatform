@@ -194,13 +194,13 @@ router.beforeEach((to, from, next) => {
 
   if (store.state.user.is_login) next();
   else if (token) {
-    store.commit("updateToken", token);
+    store.commit("updateToken", token); //此时异步操作，会先执行后后面的操作
     store.dispatch("getInfo", {
       success() {
-
+        next(); //而成功之后再跳转，跳转之后store-state中就已经有值了
       }
     });
-    next();
+
   }
   else if (!to.meta.RequireLogin) {
     next();
