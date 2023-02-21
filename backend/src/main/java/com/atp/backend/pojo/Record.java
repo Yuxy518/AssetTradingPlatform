@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Record {
+	private String serviceNum;
 	private String submitTime;
 	private String module;
 	private String type;

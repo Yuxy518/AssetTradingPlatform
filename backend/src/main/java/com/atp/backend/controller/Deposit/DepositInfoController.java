@@ -1,6 +1,6 @@
 package com.atp.backend.controller.Deposit;
 
-import com.atp.backend.service.Deposit.DepositInfoService;
+import com.atp.backend.service.api.Deposit.DepositInfoService;
 import com.atp.backend.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,7 +1,6 @@
 package com.atp.backend.controller.Refinance;
 
-import com.atp.backend.pojo.RefinanceContract;
-import com.atp.backend.service.Refinance.RefinanceContractService;
+import com.atp.backend.service.api.Refinance.RefinanceContractService;
 import com.atp.backend.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

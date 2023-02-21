@@ -1,6 +1,6 @@
 package com.atp.backend.controller.Contract;
 
-import com.atp.backend.service.Contract.ContractInfoService;
+import com.atp.backend.service.api.Contract.ContractInfoService;
 import com.atp.backend.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
