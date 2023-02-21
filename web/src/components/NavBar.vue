@@ -40,9 +40,9 @@
                     <ul class="dorp-box d-4">
                         <li class="drop-li"><a href="https://www.creditchina.gov.cn/gerenxinyong/?navPage=10"
                                 target="_blank">信用评估</a></li>
-                        <li class="drop-li"><router-link :to="{ name: 'Contract_InfoView' }">信息采集</router-link></li>
-                        <li class="drop-li"><router-link :to="{ name: 'Contract_ContractView' }">签订交易合同</router-link>
-                        </li>
+                        <li class="drop-li"><router-link :to="{ name: 'Contract_InfoView' }">购房交易合同</router-link></li>
+                        <!-- <li class="drop-li"><router-link :to="{ name: 'Contract_ContractView' }">签订交易合同</router-link> -->
+                        <!-- </li> -->
                         <li class="drop-li"><router-link :to="{ name: 'Contract_recordsView' }">我的办理记录</router-link>
                         </li>
                         <!-- <li class="drop-li"><router-link :to="{ name: 'FeedbackView' }">异常反馈</router-link></li> -->
