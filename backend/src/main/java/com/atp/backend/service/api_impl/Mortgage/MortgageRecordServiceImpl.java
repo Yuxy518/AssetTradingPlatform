@@ -38,7 +38,7 @@ public class MortgageRecordServiceImpl implements MortgageRecordService {
 		List<MortgageInfo> list1 = mortgageInfoMapper.selectList(queryWrapper1);
 
 		for(MortgageInfo mortgageInfo : list1) {
-			list.add(new Record(mortgageInfo.getServiceNum(), mortgageInfo.getSubmitTime(), "办理按揭贷款", "申请贷款", mortgageInfo.getProgress(), mortgageInfo.getRemarks()));
+			list.add(new Record(mortgageInfo.getServiceNum(), mortgageInfo.getName(), mortgageInfo.getIdNum(), null, null, mortgageInfo.getSubmitTime(), "办理按揭贷款", "申请贷款", mortgageInfo.getProgress(), mortgageInfo.getRemarks()));
 		}
 
 		QueryWrapper<MortgageContract> queryWrapper2 = new QueryWrapper<>();
@@ -46,7 +46,10 @@ public class MortgageRecordServiceImpl implements MortgageRecordService {
 		List<MortgageContract> list2 = mortgageContractMapper.selectList(queryWrapper2);
 
 		for(MortgageContract mortgageContract : list2) {
-			list.add(new Record(mortgageContract.getServiceNum(), mortgageContract.getSubmitTime(), "办理按揭贷款", "提交按揭贷款合同", mortgageContract.getProgress(), mortgageContract.getRemarks()));
+			QueryWrapper<MortgageInfo> queryWrapper = new QueryWrapper<>();
+			queryWrapper.eq("service_num", mortgageContract.getServiceNum());
+			MortgageInfo mortgageInfo = mortgageInfoMapper.selectOne(queryWrapper);
+			list.add(new Record(mortgageContract.getServiceNum(), mortgageInfo.getName(), mortgageInfo.getIdNum(), null, null, mortgageContract.getSubmitTime(), "办理按揭贷款", "提交按揭贷款合同", mortgageContract.getProgress(), mortgageContract.getRemarks()));
 		}
 
 		list.sort(Comparator.comparing(Record::getSubmitTime));

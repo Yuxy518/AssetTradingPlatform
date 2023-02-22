@@ -37,7 +37,7 @@ public class RefinanceRecordServiceImpl implements RefinanceRecordService {
 		List<RefinanceInfo> list1 = refinanceInfoMapper.selectList(queryWrapper1);
 
 		for(RefinanceInfo refinanceInfo : list1) {
-			list.add(new Record(refinanceInfo.getApplicationnum(), refinanceInfo.getSubmitdate(), null, "申请转按揭", refinanceInfo.getProgress(), refinanceInfo.getRemarks()));
+			list.add(new Record(refinanceInfo.getApplicationnum(), refinanceInfo.getOriname(), refinanceInfo.getOriidnum(), refinanceInfo.getNewname(), refinanceInfo.getNewidnum(), refinanceInfo.getSubmitdate(), null, "申请转按揭", refinanceInfo.getProgress(), refinanceInfo.getRemarks()));
 		}
 
 		QueryWrapper<RefinanceContract> queryWrapper2 = new QueryWrapper<>();
@@ -45,7 +45,10 @@ public class RefinanceRecordServiceImpl implements RefinanceRecordService {
 		List<RefinanceContract> list2 = refinanceContractMapper.selectList(queryWrapper2);
 
 		for(RefinanceContract refinanceContract : list2) {
-			list.add(new Record(refinanceContract.getApplyNum(), refinanceContract.getSubmitTime(), null, "提交转按揭合同", refinanceContract.getProgress(), refinanceContract.getRemarks()));
+			QueryWrapper<RefinanceInfo> queryWrapper = new QueryWrapper<>();
+			queryWrapper.eq("applicationnum", refinanceContract.getApplyNum());
+			RefinanceInfo refinanceInfo = refinanceInfoMapper.selectOne(queryWrapper);
+			list.add(new Record(refinanceContract.getApplyNum(), refinanceInfo.getOriname(), refinanceInfo.getOriidnum(), refinanceInfo.getNewname(), refinanceInfo.getNewidnum(), refinanceContract.getSubmitTime(), null, "提交转按揭合同", refinanceContract.getProgress(), refinanceContract.getRemarks()));
 		}
 
 		//按照提交时间递增排序

@@ -16,13 +16,14 @@
                 <div class="col-9">
                     <div class="card">
                         <div class="card-body">
-                            <table class="table">
+                            <table class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th scope="col">编号</th>
                                         <th scope="col">提交时间</th>
-                                        <th scope="col">申请按揭贷款服务编号</th>
-                                        <th scope="col">类型</th>
+                                        <th scope="col">申请人</th>
+                                        <th scope="col">申请服务编号</th>
+                                        <th scope="col">服务类型</th>
                                         <th scope="col">审核进度</th>
                                         <th scope="col">备注信息</th>
                                     </tr>
@@ -31,6 +32,7 @@
                                     <tr v-for="(record, index) in records" :key="record.submitTime">
                                         <th scope="row">{{ index + 1 }}</th>
                                         <td>{{ record.submitTime }}</td>
+                                        <td>{{ record.name1 }}</td>
                                         <td>{{ record.serviceNum }}</td>
                                         <td>{{ record.type }}</td>
                                         <td>{{ record.progress }}</td>

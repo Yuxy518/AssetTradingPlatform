@@ -2,7 +2,6 @@
   <div>
     <CarouselChart />
     <HomeIntroduction />
-    主页
   </div>
 </template>
 
@@ -19,6 +18,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

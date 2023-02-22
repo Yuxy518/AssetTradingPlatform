@@ -12,9 +12,9 @@
         name: 'Refinancing_InfoView'
     }">办理转按揭</router-link>
                     <ul class="dorp-box d-2">
-                        <li class="drop-li"><router-link :to="{ name: 'Refinancing_InfoView' }">转按揭信息采集</router-link>
+                        <li class="drop-li"><router-link :to="{ name: 'Refinancing_InfoView' }">申请转按揭</router-link>
                         </li>
-                        <li class="drop-li"><router-link :to="{ name: 'Refinancing_ContractView' }">获取转按揭合同</router-link>
+                        <li class="drop-li"><router-link :to="{ name: 'Refinancing_ContractView' }">提交转按揭合同</router-link>
                         </li>
                         <li class="drop-li"><router-link :to="{ name: 'Refinancing_RecordsView' }">我的办理记录</router-link>
                         </li>
@@ -40,7 +40,7 @@
                     <ul class="dorp-box d-4">
                         <li class="drop-li"><a href="https://www.creditchina.gov.cn/gerenxinyong/?navPage=10"
                                 target="_blank">信用评估</a></li>
-                        <li class="drop-li"><router-link :to="{ name: 'Contract_InfoView' }">购房交易合同</router-link></li>
+                        <li class="drop-li"><router-link :to="{ name: 'Contract_InfoView' }">提交交易合同</router-link></li>
                         <!-- <li class="drop-li"><router-link :to="{ name: 'Contract_ContractView' }">签订交易合同</router-link> -->
                         <!-- </li> -->
                         <li class="drop-li"><router-link :to="{ name: 'Contract_recordsView' }">我的办理记录</router-link>
@@ -51,12 +51,12 @@
                 <!-- 办理按揭贷款 -->
                 <li class="nav-li nav-5"><router-link
                         :class="(route_name == 'Mortgage_ContractView' || route_name == 'Mortgage_RecordsView' || route_name == 'Mortgage_InfoView') ? 'highlight' : ''"
-                        :to="{ name: 'Mortgage_ContractView' }">办理按揭贷款</router-link>
+                        :to="{ name: 'Mortgage_InfoView' }">办理按揭贷款</router-link>
                     <ul class="dorp-box d-5">
                         <li class="drop-li"><a href="https://www.creditchina.gov.cn/gerenxinyong/?navPage=10"
                                 target="_blank">信用评估</a></li>
-                        <li class="drop-li"><router-link :to="{ name: 'Mortgage_InfoView' }">选择贷款类型</router-link></li>
-                        <li class="drop-li"><router-link :to="{ name: 'Mortgage_ContractView' }">签订合同</router-link></li>
+                        <li class="drop-li"><router-link :to="{ name: 'Mortgage_InfoView' }">申请按揭贷款</router-link></li>
+                        <li class="drop-li"><router-link :to="{ name: 'Mortgage_ContractView' }">提交贷款合同</router-link></li>
                         <li class="drop-li"><router-link :to="{ name: 'Mortgage_RecordsView' }">我的办理记录</router-link>
                         </li>
                         <!-- <li class="drop-li"><router-link :to="{ name: 'FeedbackView' }">异常反馈</router-link></li> -->
@@ -88,7 +88,7 @@
                         <span class="userName">{{ $store.state.user.username }}</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><router-link class="dropdown-item" :to="{ name: '' }">我的业务进度</router-link> </li>
+                        <li><router-link class="dropdown-item" :to="{ name: 'AllRecordView' }">我的业务进度</router-link> </li>
                         <li><span class="dropdown-item" style="cursor: pointer" @click="logout">退出登录</span></li>
                     </ul>
                 </li>
@@ -102,6 +102,7 @@ import $ from "jquery";
 import { useRoute } from "vue-router";
 import { computed } from "vue";
 import { useStore } from "vuex";
+import router from "@/router";
 
 window.onload = function () {
     $(".nav-1").mouseover(function () {
@@ -150,6 +151,7 @@ export default {
         const logout = () => {
             store.dispatch("logout");
             alert("您已退出登录！");
+            router.push({ name: "LoginView" });
         }
 
         return {

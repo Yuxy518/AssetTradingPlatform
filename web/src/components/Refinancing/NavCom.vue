@@ -5,20 +5,20 @@
     <div class="card">
         <div class="card-body">
             <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">申请转按揭</a>
+                <li class="nav-item info">
+                    <router-link :to="{ name: 'Refinancing_InfoView' }" class="nav-link">申请转按揭</router-link>
+                </li>
+                <hr>
+                <li class="nav-item contract">
+                    <router-link :to="{ name: 'Refinancing_ContractView' }" class="nav-link">提交转按揭合同</router-link>
+                </li>
+                <hr>
+                <li class="nav-item records">
+                    <router-link :to="{ name: 'Refinancing_RecordsView' }" class="nav-link">我的办理记录</router-link>
                 </li>
                 <hr>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">提交转按揭合同</a>
-                </li>
-                <hr>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">我的办理记录</a>
-                </li>
-                <hr>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">异常反馈</a>
+                    <router-link :to="{ name: 'Default_ComplaintView' }" class="nav-link">异常反馈</router-link>
                 </li>
             </ul>
         </div>
@@ -26,8 +26,22 @@
 </template>
 
 <script>
-export default {
+import { useRoute } from 'vue-router';
+import { computed } from '@vue/reactivity';
+import $ from 'jquery';
 
+export default {
+    mounted() {
+        const route = useRoute();
+        const store_name = computed(() => route.name);
+        if (store_name.value === "Refinancing_InfoView") {
+            $(".info a").css("color", "#ba9a5b");
+        } else if (store_name.value === "Refinancing_ContractView") {
+            $(".contract a").css("color", "#ba9a5b");
+        } else if (store_name.value === "Refinancing_RecordsView") {
+            $(".records a").css("color", "#ba9a5b");
+        }
+    }
 }
 </script>
 

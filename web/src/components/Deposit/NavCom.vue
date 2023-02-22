@@ -5,20 +5,16 @@
     <div class="card">
         <div class="card-body">
             <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">交定金信息采集</a>
+                <li class="nav-item info">
+                    <router-link :to="{ name: 'Deposit_InfoView' }" class="nav-link">交定金信息采集</router-link>
                 </li>
-                <!-- <hr>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">支付定金</a>
-                    </li> -->
                 <hr>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">我的办理记录</a>
+                <li class="nav-item records">
+                    <router-link :to="{ name: 'Deposit_RecordsView' }" class="nav-link">我的办理记录</router-link>
                 </li>
                 <hr>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">异常反馈</a>
+                    <router-link :to="{ name: 'Default_ComplaintView' }" class="nav-link">异常反馈</router-link>
                 </li>
             </ul>
         </div>
@@ -26,9 +22,20 @@
 </template>
 
 <script>
+import { useRoute } from 'vue-router';
+import { computed } from '@vue/reactivity';
+import $ from 'jquery';
 
 export default {
-
+    mounted() {
+        const route = useRoute();
+        const store_name = computed(() => route.name);
+        if (store_name.value === "Deposit_InfoView") {
+            $(".info a").css("color", "#ba9a5b");
+        } else if (store_name.value === "Deposit_RecordsView") {
+            $(".records a").css("color", "#ba9a5b");
+        }
+    }
 }
 </script>
 

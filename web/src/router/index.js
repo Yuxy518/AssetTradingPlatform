@@ -8,7 +8,6 @@ import Refinancing_InfoView from '@/views/Refinancing/InfoView'
 import Refinancing_RecordsView from '@/views/Refinancing/RecordsView'
 import Deposit_ContractView from '@/views/Deposit/ContractView'
 import Deposit_InfoView from '@/views/Deposit/InfoView'
-import Deposit_PayView from '@/views/Deposit/PayView'
 import Deposit_RecordsView from '@/views/Deposit/RecordsView'
 import Contract_ContractView from '@/views/Contract/ContractView'
 import Contract_InfoView from '@/views/Contract/InfoView'
@@ -18,7 +17,8 @@ import Mortgage_ContractView from '@/views/Mortgage/ContractView'
 import Mortgage_RecordsView from '@/views/Mortgage/RecordsView'
 import Default_ComplaintView from '@/views/Default/ComplaintView'
 import Default_RecordsView from '@/views/Default/RecordsView'
-import TestView from '@/views/TestView.vue'
+import AllRecordView from '@/views/AllRecordView'
+import NotFoundView from '@/views/NotFoundView.vue'
 
 import store from '@/store'
 
@@ -95,14 +95,7 @@ const routes = [
       RequireLogin: true,
     }
   },
-  {
-    path: '/deposit/pay/',
-    name: 'Deposit_PayView',
-    component: Deposit_PayView,
-    meta: {
-      RequireLogin: true,
-    }
-  },
+
   {
     path: '/deposit/records/',
     name: 'Deposit_RecordsView',
@@ -176,9 +169,21 @@ const routes = [
     }
   },
   {
-    path: '/test/',
-    name: 'TestView',
-    component: TestView,
+    path: '/all/record/',
+    name: 'AllRecordView',
+    component: AllRecordView,
+    meta: {
+      RequireLogin: true,
+    }
+  },
+  {
+    path: '/404/',
+    name: 'NotFoundView',
+    component: NotFoundView,
+  },
+  {
+    path: "/:catchAll(.*)/",
+    redirect: "/404/",
   }
 ]
 

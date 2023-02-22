@@ -2,6 +2,7 @@
   <LogoBar />
   <NavBar />
   <router-view />
+  <div class="bottom"></div>
   <BottomBar />
 </template>
 
@@ -68,5 +69,7 @@ export default {
 </script>
 
 <style>
-
+.bottom {
+  height: 150px;
+}
 </style>

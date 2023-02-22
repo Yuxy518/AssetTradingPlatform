@@ -210,6 +210,7 @@ import $ from 'jquery';
 import { computed } from '@vue/reactivity';
 import { useStore } from 'vuex';
 import { ref } from 'vue';
+import router from '@/router';
 
 export default {
     setup() {
@@ -241,7 +242,13 @@ export default {
                     Authorization: "Bearer " + token.value,
                 },
                 success(resp) {
-                    console.log(resp);
+                    if (resp.error_message === 'success') {
+                        alert("提交成功，正在跳转办理进度页查看详情...");
+                        router.push({ name: "Contract_RecordsView" });
+                    }
+                    else {
+                        alert("提交失败，" + resp.error_message);
+                    }
                 },
                 error(resp) {
                     console.log(resp);

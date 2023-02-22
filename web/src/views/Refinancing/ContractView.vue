@@ -64,6 +64,7 @@ import { ref } from 'vue';
 import $ from 'jquery';
 import { useStore } from 'vuex';
 import { computed } from '@vue/reactivity';
+import router from '@/router';
 
 export default {
     setup() {
@@ -87,7 +88,13 @@ export default {
                     Authorization: "Bearer " + token.value,
                 },
                 success(resp) {
-                    console.log(resp);
+                    if (resp.error_message === "success") {
+                        alert("申请转按揭成功！正在跳转'我的办理进度'页面查看详情...");
+                        router.push({ name: "Refinancing_RecordsView" });
+                    }
+                    else {
+                        alert("申请转按揭失败，" + resp.error_message);
+                    }
                 },
                 error(resp) {
                     console.log(resp);
