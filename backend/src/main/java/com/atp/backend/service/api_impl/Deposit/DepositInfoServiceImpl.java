@@ -26,7 +26,7 @@ public class DepositInfoServiceImpl implements DepositInfoService {
 	public Map<String, String> depositInfo(Integer userId, String payerName, String payerIdNum, String propertyNum, Double mount, String remarks) {
 		Map<String, String> map = new HashMap<>();
 
-		payerName = payerIdNum.trim();
+		payerName = payerName.trim();
 		payerIdNum = payerIdNum.trim();
 		propertyNum = propertyNum.trim();
 

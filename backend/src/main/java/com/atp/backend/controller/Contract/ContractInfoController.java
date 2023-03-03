@@ -28,6 +28,7 @@ public class ContractInfoController {
 		String sellerIdNum = map.get("sellerIdNum");
 		String buyerName = map.get("buyerName");
 		String buyerIdNum = map.get("buyerIdNum");
+
 		String propertyNum = map.get("propertyNum");
 		String remarks = map.get("remarks");
 
